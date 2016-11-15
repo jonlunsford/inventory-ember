@@ -1,21 +1,31 @@
 {{#md-card
   onsubmit=attrs.onsubmit
   title='Register with Inventory IO'
-  buttonText='Register'}}
+  buttonText='Register'
+  buttonDisabled=validations.messages.length}}
+
   <div class="row">
     {{input-field
+      value=model.email
+      errors=(v-get model 'email' 'messages')
       classNames='col s12'
       type='email'
       label='Email'}}
   </div>
+
   <div class="row">
     {{input-field
+      value=model.password
+      errors=(v-get model 'password' 'messages')
       classNames='col s12'
       type='password'
       label='Password'}}
   </div>
+
   <div class="row">
     {{input-field
+      value=model.passwordConfirmation
+      errors=(v-get model 'passwordConfirmation' 'messages')
       classNames='col s12'
       type='password'
       label='Confirm Password'}}

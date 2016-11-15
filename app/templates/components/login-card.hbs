@@ -1,17 +1,25 @@
 {{#md-card
   onsubmit=attrs.onsubmit
   title='Login to Inventory IO'
-  buttonText='Login'}}
+  buttonText='Login'
+  buttonDisabled=validations.messages.length}}
+
   <div class="row">
     {{input-field
+      value=model.email
+      errors=(v-get model 'email' 'messages')
       classNames='col s12'
       type='email'
       label='Email'}}
   </div>
+
   <div class="row">
     {{input-field
+      value=model.password
+      errors=(v-get model 'password' 'messages')
       classNames='col s12'
       type='password'
       label='Password'}}
   </div>
+
 {{/md-card}}
