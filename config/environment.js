@@ -35,6 +35,11 @@ module.exports = function(environment) {
       authenticationRoute: 'auth.login',
       routeIfAlreadyAuthenticated: 'app.index',
       routeAfterAuthenticated: 'app.index'
+    },
+
+    flashMessages: {
+      timeout: 300,
+      extendedTimeout: 375
     }
   };
 
