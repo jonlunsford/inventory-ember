@@ -20,7 +20,17 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    DS: {
+      host: 'http://localhost:4000',
+      namespace: 'api/v1'
+    },
+
+    fastboot: {
+      hostWhitelist: ['https://powerful-castle-53372.herokuapp.com/', /^localhost:\d+$/]
     }
+
   };
 
   if (environment === 'development') {
@@ -43,7 +53,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.DS.host = 'https://blooming-hamlet-28926.herokuapp.com/'
   }
 
   return ENV;
