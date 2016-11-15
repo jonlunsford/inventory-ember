@@ -29,8 +29,13 @@ module.exports = function(environment) {
 
     fastboot: {
       hostWhitelist: ['https://powerful-castle-53372.herokuapp.com/', /^localhost:\d+$/]
-    }
+    },
 
+    'ember-simple-auth': {
+      authenticationRoute: 'auth.login',
+      routeIfAlreadyAuthenticated: 'app.index',
+      routeAfterAuthenticated: 'app.index'
+    }
   };
 
   if (environment === 'development') {
