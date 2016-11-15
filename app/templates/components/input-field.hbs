@@ -1,7 +1,7 @@
 <input
   value={{value}}
   type={{type}}
-  class="{{ if value
+  class="{{if value
     (concat
       "validate"
       " "
@@ -10,4 +10,6 @@
   onkeyup={{action (mut value) value='target.value'}}
   onchange={{action (mut value) value='target.value'}} />
 
-<label data-errors={{_errorMessages}}>{{label}}{{yeild}}</label>
+<label data-error={{_errorMessages}}>
+  {{label}}{{yeild}}
+</label>

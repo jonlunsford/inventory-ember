@@ -7,7 +7,7 @@
   <div class="row">
     {{input-field
       value=model.email
-      errors=(v-get model 'email' 'messages')
+      errors=validations.attrs.model.email.messages
       classNames='col s12'
       type='email'
       label='Email'}}
@@ -16,7 +16,7 @@
   <div class="row">
     {{input-field
       value=model.password
-      errors=(v-get model 'password' 'messages')
+      errors=validations.attrs.model.password.messages
       classNames='col s12'
       type='password'
       label='Password'}}
