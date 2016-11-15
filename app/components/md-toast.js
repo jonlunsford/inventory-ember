@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
   computed: { readOnly },
-  run: { next, cancel },
+  run: { next },
   getWithDefault, Component, computed
 } = Ember;
 
