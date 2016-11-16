@@ -34,7 +34,8 @@ module.exports = function(environment) {
     'ember-simple-auth': {
       authenticationRoute: 'auth.login',
       routeIfAlreadyAuthenticated: 'app.index',
-      routeAfterAuthenticated: 'app.index'
+      routeAfterAuthenticated: 'app.index',
+      baseURL: 'api/v1'
     },
 
     flashMessages: {

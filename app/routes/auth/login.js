@@ -16,8 +16,9 @@ export default Route.extend({
       ).then(() => {
         this.get('flashMessages').success('Logged in!');
       }).catch((response) => {
-        const { errors } = response;
-        if(errors.mapBy('code').indexOf(401) >= 0) {
+        const { errors } = response || {errors: []};
+
+        if(errors && errors.mapBy('code').indexOf(401) >= 0) {
           this.get('flashMessages').danger('There was a problem with your username or password, please try again');
         } else {
           this.get('flashMessages').danger('An unexpected error occurred, please try again later');
