@@ -48,6 +48,7 @@
     "ember-route-action-helper": "2.0.0",
     "ember-simple-auth": "git://github.com/simplabs/ember-simple-auth.git#0b3a729f117188e83d1b9ce74d7c58e8f19ce79e",
     "ember-welcome-page": "^1.0.3",
+    "liquid-fire": "0.26.4",
     "loader.js": "^4.0.10"
   }
 }
