@@ -12,6 +12,10 @@ Router.map(function() {
   });
   this.route('app', function() {
     this.route('index');
+
+    this.route('room', {
+      path: 'room/:room_id'
+    }, function() {});
   });
 });
 

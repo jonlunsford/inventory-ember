@@ -1,0 +1,14 @@
+<div class="card room-card">
+  <div class="card-content">
+    <div class="messages-container">
+      {{outlet}}
+    </div>
+  </div>
+
+  <div class="card-action">
+    {{input-field value=newMessage classNames="new-message-field"}}
+    <button class="btn-floating btn-large z-depth-0 send-button right">
+      <i class="material-icons">send</i>
+    </button>
+  </div>
+</div>

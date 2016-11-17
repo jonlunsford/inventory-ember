@@ -22,7 +22,23 @@ export default Ember.Route.extend({
       });
     },
 
-    removeRoom(room) { return room; }
+    removeRoom(room) {
+      if(window.confirm('Are you sure?')) {
+        room.destroyRecord().then(() => {
+          this.get('flashMessages').success(`Deleted room: ${room.get('name')}`);
+        }).catch(() => {
+          this.get('flashMessages').danger(`Problem deleting room: ${room.get('name')}`);
+        });
+      }
+    },
+
+    enterRoom(room) {
+      let buttons = ['remove_circle'];
+      let targetText = arguments[1].target.innerText;
+      if(buttons.indexOf(targetText) < 0) {
+        this.transitionTo('app.room.index', room);
+      }
+    }
   },
 
   model() {
