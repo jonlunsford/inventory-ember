@@ -6,8 +6,9 @@
   </div>
 
   <div class="card-action">
-    {{input-field value=newMessage classNames="new-message-field"}}
-    <button class="btn-floating btn-large z-depth-0 send-button right">
+    {{input-field value=model.newMessage classNames="new-message-field"}}
+
+    <button onclick={{route-action 'createMessage' room}} class="btn-floating btn-large z-depth-0 send-button right">
       <i class="material-icons">send</i>
     </button>
   </div>
