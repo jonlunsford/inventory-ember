@@ -13,5 +13,5 @@ test('it renders', function(assert) {
     {{/md-nav}}
   `);
 
-  assert.equal(this.$().text().trim().replace(/[\s\n]+/g, ''), 'menutemplateblocktexttemplateblocktext');
+  assert.equal(this.$().text().trim().replace(/[\s\n]+/g, ''), 'menutemplateblocktext');
 });

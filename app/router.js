@@ -16,7 +16,12 @@ Router.map(function() {
     this.route('room', {
       path: 'room/:room_id'
     }, function() {});
+
+    this.route('company', {
+      path: 'company/:company_id'
+    }, function() {});
   });
+
 });
 
 export default Router;

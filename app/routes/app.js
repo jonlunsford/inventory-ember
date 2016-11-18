@@ -5,6 +5,7 @@ import fetch from 'ember-network/fetch';
 const { Route, inject } = Ember;
 
 export default Route.extend({
+  flashMessages: inject.service(),
   session: inject.service(),
 
   beforeModel() {
@@ -24,6 +25,8 @@ export default Route.extend({
         const currentUser = this.store.push(data);
         this.set('session.currentUser', currentUser);
       });
+    }).catch(() => {
+      this.get('flashMessages').danger('An unexpected error occurred, please try again later');
     });
   }
 });

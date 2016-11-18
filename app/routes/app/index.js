@@ -6,45 +6,45 @@ export default Ember.Route.extend({
   flashMessages: inject.service(),
 
   actions: {
-    createRoom() {
-      let data = this.get('currentModel.newRoom');
-      let room = this.store.createRecord('room', { name: data.name });
+    createCompany() {
+      let data = this.get('currentModel.newCompany');
+      let company = this.store.createRecord('company', { title: data.title });
 
-      this.set('currentModel.newRoom.errors', []);
+      this.set('currentModel.newCompany.errors', []);
 
-      room.save().then(() => {
-        this.get('flashMessages').success(`Created room: ${data.name}`);
-        this.set('currentModel.newRoom.name', '');
+      company.save().then(() => {
+        this.get('flashMessages').success(`Created company: ${data.title}`);
+        this.set('currentModel.newCompany.title', '');
       }).catch((err) => {
-        this.store.unloadRecord(room);
-        this.set('currentModel.newRoom.errors', (err.errors || []).mapBy('detail'));
-        this.get('flashMessages').danger(`Problem creating room: ${data.name}`);
+        this.store.unloadRecord(company);
+        this.set('currentModel.newCompany.errors', (err.errors || []).mapBy('detail'));
+        this.get('flashMessages').danger(`Problem creating company: ${data.title}`);
       });
     },
 
-    removeRoom(room) {
+    removeCompany(company) {
       if(window.confirm('Are you sure?')) {
-        room.destroyRecord().then(() => {
-          this.get('flashMessages').success(`Deleted room: ${room.get('name')}`);
+        company.destroyRecord().then(() => {
+          this.get('flashMessages').success(`Deleted company: ${company.get('title')}`);
         }).catch(() => {
-          this.get('flashMessages').danger(`Problem deleting room: ${room.get('name')}`);
+          this.get('flashMessages').danger(`Problem deleting company: ${company.get('title')}`);
         });
       }
     },
 
-    enterRoom(room) {
+    enterCompany(company) {
       let buttons = ['remove_circle'];
       let targetText = arguments[1].target.innerText;
       if(buttons.indexOf(targetText) < 0) {
-        this.transitionTo('app.room.index', room);
+        this.transitionTo('app.company.index', company);
       }
     }
   },
 
   model() {
     return RSVP.hash({
-      rooms: this.store.findAll('room'),
-      newRoom: { name: '', errors: [] }
+      companies: this.store.findAll('company'),
+      newCompany: { title: '', errors: [] }
     });
   }
 });

@@ -1,34 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="col s12 m8 offset-m2">
+{{#md-layout}}
+  {{#md-card title='Companies'}}
+    <ul class="collection">
+      {{#each model.companies as |company|}}
+      <li class="collection-item avatar" onclick={{route-action 'enterCompany' company}}>
+          <i class="material-icons green circle">chat</i>
+          <span class="title">{{company.title}}</span>
+          <p class="gray-text">Owner: {{company.owner.email}}</p>
+          <span class="secondary-content">
+            <i class="material-icons red-text" onclick={{route-action 'removeCompany' company}}>remove_circle </i>
+          </span>
+        </li>
+      {{else}}
+        <li class="collection-item">
+          No companies yet...
+        </li>
+      {{/each}}
+    </ul>
+  {{/md-card}}
 
-      {{#md-card title='Rooms'}}
-        <ul class="collection">
-          {{#each model.rooms as |room|}}
-          <li class="collection-item avatar" onclick={{route-action 'enterRoom' room}}>
-              <i class="material-icons green circle">chat</i>
-              <span class="title">{{room.name}}</span>
-              <p class="gray-text">Owner: {{room.owner.email}}</p>
-              <span class="secondary-content">
-                <i class="material-icons red-text" onclick={{route-action 'removeRoom' room}}>remove_circle </i>
-              </span>
-            </li>
-          {{else}}
-            <li class="collection-item">
-              No rooms yet...
-            </li>
-          {{/each}}
-        </ul>
-      {{/md-card}}
-
-      {{#md-card
-        title='Create New Room'
-        buttonText='Create'
-        onsubmit=(route-action 'createRoom')}}
-        <div class="row">
-          {{input-field value=model.newRoom.name label="Room Name" classNames='col s12' errors=model.newRoom.errors}}
-        </div>
-      {{/md-card}}
+  {{#md-card
+    title='Create New Company'
+    buttonText='Create'
+    onsubmit=(route-action 'createCompany')}}
+    <div class="row">
+      {{input-field value=model.newCompany.title label="Company title" classNames='col s12' errors=model.newCompany.errors}}
     </div>
-  </div>
-</div>
+  {{/md-card}}
+{{/md-layout}}
