@@ -1,0 +1,29 @@
+{{#md-layout}}
+  {{#md-card title='Companies'}}
+    <ul class="collection">
+      {{#each model.companies as |company|}}
+      <li class="collection-item avatar" onclick={{route-action 'enterCompany' company}}>
+          <i class="material-icons green circle">chat</i>
+          <span class="title">{{company.title}}</span>
+          <p class="gray-text">Owner: {{company.owner.email}}</p>
+          <span class="secondary-content">
+            <i class="material-icons red-text" onclick={{route-action 'removeCompany' company}}>remove_circle </i>
+          </span>
+        </li>
+      {{else}}
+        <li class="collection-item">
+          No companies yet...
+        </li>
+      {{/each}}
+    </ul>
+  {{/md-card}}
+
+  {{#md-card
+    title='Create New Company'
+    buttonText='Create'
+    onsubmit=(route-action 'createCompany')}}
+    <div class="row">
+      {{input-field value=model.newCompany.title label="Company title" classNames='col s12' errors=model.newCompany.errors}}
+    </div>
+  {{/md-card}}
+{{/md-layout}}

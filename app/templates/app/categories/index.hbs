@@ -1,0 +1,28 @@
+{{#md-layout}}
+  {{#md-card title=model.title}}
+    <ul class="collection">
+      {{#each model.categories as |category|}}
+        <li class="collection-item avatar" onclick={{route-action 'enterCategory' category}}>
+          <i class="material-icons green circle">chat</i>
+          <span class="title">{{category.name}}</span>
+          <span class="secondary-content">
+            <i class="material-icons red-text" onclick={{route-action 'removeCategory' category}}>remove_circle </i>
+          </span>
+        </li>
+      {{else}}
+        <li class="collection-item">
+          No categories yet...
+        </li>
+      {{/each}}
+    </ul>
+  {{/md-card}}
+
+  {{#md-card
+    title='Create New Category'
+    buttonText='Create'
+    onsubmit=(route-action 'createCategory')}}
+    <div class="row">
+      {{input-field value=model.newCategory.name label="Category name" classNames='col s12' errors=model.newCategory.errors}}
+    </div>
+  {{/md-card}}
+{{/md-layout}}

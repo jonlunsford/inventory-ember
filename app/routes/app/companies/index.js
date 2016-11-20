@@ -4,6 +4,7 @@ const { RSVP, inject } = Ember;
 
 export default Ember.Route.extend({
   flashMessages: inject.service(),
+  session: inject.service(),
 
   actions: {
     createCompany() {
@@ -36,14 +37,14 @@ export default Ember.Route.extend({
       let buttons = ['remove_circle'];
       let targetText = arguments[1].target.innerText;
       if(buttons.indexOf(targetText) < 0) {
-        this.transitionTo('app.companies.index', company);
+        this.transitionTo('app.companies.show', company);
       }
     }
   },
 
   model() {
     return RSVP.hash({
-      companies: this.store.findAll('company'),
+      companies: this.get('session.currentUser').get('companies'),
       newCompany: { title: '', errors: [] }
     });
   }

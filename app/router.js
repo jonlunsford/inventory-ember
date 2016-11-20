@@ -17,11 +17,16 @@ Router.map(function() {
       path: 'room/:room_id'
     }, function() {});
 
-    this.route('company', {
-      path: 'company/:company_id'
-    }, function() {});
-  });
+    this.route('companies', function() {
+      this.route('index');
+      this.route('show', { path: ':company_id' });
+    });
 
+    this.route('category', {
+      path: 'category/:category_id'
+    }, function() {});
+
+  });
 });
 
 export default Router;
