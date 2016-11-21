@@ -17,9 +17,10 @@ export default Ember.Route.extend({
 
       this.set('currentModel.newCategory.errors', []);
 
-      category.save().then(() => {
+      category.save().then((re) => {
+        console.log('response: ', re);
         this.get('flashMessages').success(`Created category: ${data.name}`);
-        this.set('currentModel.newCategory.name', '');
+        this.jet('currentModel.newCategory.name', '');
       }).catch((err) => {
         this.store.unloadRecord(category);
         this.set('currentModel.newCategory.errors', (err.errors || []).mapBy('detail'));
@@ -47,13 +48,12 @@ export default Ember.Route.extend({
   },
 
   beforeModel(transition) {
-    console.log(transition)
     this.set('companyId', transition.params['app.companies.show'].company_id);
   },
 
   model() {
     let companyId = this.get('companyId');
-    let company = this.store.peekRecord('company', companyId);
+    let company = this.store.findRecord('company', companyId);
 
     return RSVP.hash({
       company: company,

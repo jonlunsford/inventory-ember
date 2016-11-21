@@ -8,7 +8,6 @@ export default Route.extend({
   beforeModel() {
     console.log(this.get('session').get('isAuthenticated'));
     if(this.get('session').get('isAuthenticated')) {
-      console.log(this.get('session'))
       //this.transitionTo('app.users.companies', { user_id: userId });
     }
   }

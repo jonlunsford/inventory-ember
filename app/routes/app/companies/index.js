@@ -8,8 +8,9 @@ export default Ember.Route.extend({
 
   actions: {
     createCompany() {
+      let user = this.get('session.currentUser');
       let data = this.get('currentModel.newCompany');
-      let company = this.store.createRecord('company', { title: data.title });
+      let company = this.store.createRecord('company', { owner: user, title: data.title });
 
       this.set('currentModel.newCompany.errors', []);
 
