@@ -1,0 +1,44 @@
+{{#md-layout}}
+  {{#md-card title=model.name}}
+    <ul class="collection">
+      {{#each model.products as |product|}}
+        <li class="collection-item avatar" onclick={{route-action 'showProduct' product}}>
+          <i class="material-icons green circle">chat</i>
+          <span class="title">{{product.name}}</span>
+          <span class="secondary-content">
+            <i class="material-icons red-text" onclick={{route-action 'destroyProduct' product}}>remove_circle </i>
+          </span>
+        </li>
+      {{else}}
+        <li class="collection-item">
+          No products yet...
+        </li>
+      {{/each}}
+    </ul>
+  {{/md-card}}
+
+  {{#md-card
+    title='Create New Product'
+    buttonText='Create'
+    onsubmit=(route-action 'createProduct')}}
+    <div class="row">
+      {{input-field value=model.newProductName label="Product name" classNames='col s12' errors=model.newProductErrors}}
+    </div>
+  {{/md-card}}
+
+
+  {{#md-card title="Manage Template"}}
+    <ul class="collection">
+      {{#each model.inputs as |input|}}
+        <li class="collection-item avatar" onclick={{route-action 'showProduct' product}}>
+          {{input.name}}
+        </li>
+      {{else}}
+        <li class="collection-item">
+          No inputs yet...
+        </li>
+      {{/each}}
+    </ul>
+  {{/md-card}}
+
+{{/md-layout}}
