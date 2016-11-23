@@ -1,0 +1,24 @@
+{{#md-layout}}
+  {{#md-card title=model.title}}
+    <ul class="collection">
+      {{#each model.inputs as |input|}}
+        <li>
+          {{input.name}}
+        </li>
+      {{else}}
+        <li class="collection-item">
+          No inputs yet yet...
+        </li>
+      {{/each}}
+    </ul>
+  {{/md-card}}
+
+  {{#md-card
+    title='Create New Input'
+    buttonText='Create'
+    onsubmit=(route-action 'createCategory')}}
+    <div class="row">
+      {{input-field value=model.newCategoryName label="Category name" classNames='col s12' errors=model.newCategoryErrors}}
+    </div>
+  {{/md-card}}
+{{/md-layout}}
