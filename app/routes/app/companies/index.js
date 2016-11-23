@@ -24,7 +24,7 @@ export default Ember.Route.extend({
       });
     },
 
-    removeCompany(company) {
+    destroyCompany(company) {
       if(window.confirm('Are you sure?')) {
         company.destroyRecord().then(() => {
           this.get('flashMessages').success(`Deleted company: ${company.get('title')}`);
@@ -34,7 +34,7 @@ export default Ember.Route.extend({
       }
     },
 
-    enterCompany(company) {
+    showCompany(company) {
       let buttons = ['remove_circle'];
       let targetText = arguments[1].target.innerText;
       if(buttons.indexOf(targetText) < 0) {

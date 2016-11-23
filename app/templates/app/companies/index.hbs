@@ -2,12 +2,12 @@
   {{#md-card title='Companies'}}
     <ul class="collection">
       {{#each model.companies as |company|}}
-      <li class="collection-item avatar" onclick={{route-action 'enterCompany' company}}>
+      <li class="collection-item avatar" onclick={{route-action 'showCompany' company}}>
           <i class="material-icons green circle">chat</i>
           <span class="title">{{company.title}}</span>
           <p class="gray-text">Owner: {{company.owner.email}}</p>
           <span class="secondary-content">
-            <i class="material-icons red-text" onclick={{route-action 'removeCompany' company}}>remove_circle </i>
+            <i class="material-icons red-text" onclick={{route-action 'destroyCompany' company}}>remove_circle </i>
           </span>
         </li>
       {{else}}

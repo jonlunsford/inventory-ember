@@ -1,34 +1,30 @@
 import Ember from 'ember';
 
-const { RSVP, inject } = Ember;
+const { inject } = Ember;
 
 export default Ember.Route.extend({
   flashMessages: inject.service(),
-  session: inject.service(),
 
   actions: {
     createCategory() {
       let data =  {
-        name: this.get('currentModel.newCategory.name'),
-        company: this.get('currentModel.company')
+        name: this.get('currentModel.newCategoryName'),
+        company: this.get('currentModel')
       };
 
       let category = this.store.createRecord('category', data);
 
-      this.set('currentModel.newCategory.errors', []);
-
-      category.save().then((re) => {
-        console.log('response: ', re);
+      category.save().then(() => {
         this.get('flashMessages').success(`Created category: ${data.name}`);
-        this.jet('currentModel.newCategory.name', '');
+        this.set('currentModel.newCategoryName', '');
       }).catch((err) => {
         this.store.unloadRecord(category);
-        this.set('currentModel.newCategory.errors', (err.errors || []).mapBy('detail'));
+        this.set('currentModel.newCategoryErrors', (err.errors || []).mapBy('detail'));
         this.get('flashMessages').danger(`Problem creating category: ${data.name}`);
       });
     },
 
-    removeCategory(category) {
+    destroyCategory(category) {
       if(window.confirm('Are you sure?')) {
         category.destroyRecord().then(() => {
           this.get('flashMessages').success(`Deleted category: ${category.get('name')}`);
@@ -38,27 +34,12 @@ export default Ember.Route.extend({
       }
     },
 
-    enterCategory(category) {
+    showCategory(category) {
       let buttons = ['remove_circle'];
       let targetText = arguments[1].target.innerText;
       if(buttons.indexOf(targetText) < 0) {
-        this.transitionTo('app.category.index', category);
+        this.transitionTo('app.categories.show', category);
       }
     }
-  },
-
-  beforeModel(transition) {
-    this.set('companyId', transition.params['app.companies.show'].company_id);
-  },
-
-  model() {
-    let companyId = this.get('companyId');
-    let company = this.store.findRecord('company', companyId);
-
-    return RSVP.hash({
-      company: company,
-      categories: company.get('categories'),
-      newCategory: { name: '', errors: [] }
-    });
   }
 });

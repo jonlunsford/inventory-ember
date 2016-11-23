@@ -22,10 +22,15 @@ Router.map(function() {
       this.route('show', { path: ':company_id' });
     });
 
-    this.route('category', {
-      path: 'category/:category_id'
-    }, function() {});
+    this.route('categories', function() {
+      this.route('index');
+      this.route('show', { path: ':category_id' });
+    });
 
+    this.route('products', function() {
+      this.route('index');
+      this.route('show', { path: ':product_id' });
+    });
   });
 });
 
