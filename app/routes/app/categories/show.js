@@ -4,6 +4,13 @@ const { inject } = Ember;
 
 export default Ember.Route.extend({
   flashMessages: inject.service(),
+  componentMap: {
+    text: 'input-text-composer',
+    textarea: 'input-textarea-composer',
+    number: 'input-number-composer',
+    radiogroup: 'input-radio-group-composer',
+  },
+
 
   actions: {
     createProduct() {
@@ -40,7 +47,39 @@ export default Ember.Route.extend({
       if(buttons.indexOf(targetText) < 0) {
         this.transitionTo('app.products.show', product);
       }
+    },
+
+    saveInputs() {
+      this.store.peekAll('input').save().then(() => {
+        this.get('flashMessages').success('Changes Saved');
+      }).catch(() => {
+        this.get('flashMessages').danger('Problem Saving');
+      });
+    },
+
+    deleteInput(input) {
+      if(window.confirm('Are you sure?')) {
+        input.destroyRecord().then(() => {
+          this.get('flashMessages').success(`Deleted input: ${input.get('name')}`);
+        }).catch(() => {
+          this.get('flashMessages').danger(`Problem deleting input: ${input.get('name')}`);
+        });
+      }
+    },
+
+    addInput(event) {
+      let fieldType = event.target.value;
+      let data = {
+        inputType: fieldType,
+        category: this.get('currentModel'),
+        meta: {
+          ember_component: this.get('componentMap')[fieldType]
+        }
+      };
+
+      this.store.createRecord('input', data);
     }
-  }
+  },
+
 
 });

@@ -27,18 +27,18 @@
   {{/md-card}}
 
 
-  {{#md-card title="Manage Template"}}
-    <ul class="collection">
-      {{#each model.inputs as |input|}}
-        <li class="collection-item avatar" onclick={{route-action 'showProduct' product}}>
-          {{input.name}}
-        </li>
-      {{else}}
-        <li class="collection-item">
-          No inputs yet...
-        </li>
-      {{/each}}
-    </ul>
+  {{#md-card title="Manage Template"
+  buttonText='Save'
+  onsubmit=(route-action 'saveInputs')}}
+    {{#each model.inputs as |input|}}
+      {{input-composer input=input }}
+    {{/each}}
+
+    <div class="row">
+      {{input-select onchange=(route-action 'addInput') model=model label="Choose a field to insert" classNames='col s12' }}
+    </div>
   {{/md-card}}
+
+
 
 {{/md-layout}}

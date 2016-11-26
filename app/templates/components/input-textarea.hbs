@@ -1,15 +1,15 @@
-<input
+<textarea
   id={{UUID}}
   value={{value}}
-  type={{type}}
-  class="{{if value
+  class="materialize-textarea {{if value
     (concat
       "validate"
       " "
       (if errors.length "invalid" "valid")
     )}}"
   onkeyup={{action 'setValue'}}
-  onchange={{action 'setValue'}} />
+  onchange={{action 'setValue'}}>
+</textarea>
 
 <label class={{if value "active" ""}} for={{UUID}} data-error={{_errorMessages}}>
   {{label}}{{yeild}}

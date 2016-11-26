@@ -1,0 +1,24 @@
+{{#if editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12 m6 l6"
+  }}
+
+  {{input-field
+    value=input.value
+    onkeyup=setValue
+    label="Default value, or leave blank."
+    classNames="col s12 m6 l6"
+  }}
+{{/if}}
+
+{{#if previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+      <p>Textarea Preview:</p>
+    {{/if}}
+    {{input-textarea value=input.value label=input.label }}
+  </div>
+{{/if}}

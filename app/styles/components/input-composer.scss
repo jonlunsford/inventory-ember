@@ -1,0 +1,15 @@
+.input-composer {
+  position: relative;
+  padding-top: 15px;
+  border: 1px dashed #ccc;
+
+  .more-menu {
+    border-left: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+}
+

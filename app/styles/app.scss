@@ -9,6 +9,7 @@ $primary-color: color('deep-orange', 'darken-2');
 
 // Components
 @import "components/toasts";
+@import "components/input-composer";
 
 // View stylesheets
 @import "app/index";
@@ -24,3 +25,35 @@ body {
   -webkit-transform: none;
 }
 
+// Utils
+input[type='text'].short-text-field {
+  height: 1.5rem;
+}
+
+$padding-mods: (
+  pt: padding-top,
+  pl: padding-left,
+  pb: padding-bottom,
+  pr: padding-right
+);
+
+$margin-mods: (
+  mt: margin-top,
+  ml: margin-left,
+  mb: margin-bottom,
+  mr: margin-right
+);
+
+@for $i from 1 through 4 {
+  @each $mod, $attr in $padding-mods {
+    .#{$mod}#{$i} {
+      #{$attr}: #{$i}rem !important;
+    }
+  }
+
+  @each $mod, $attr in $margin-mods {
+    .#{$mod}#{$i} {
+      #{$attr}: #{$i}rem !important;
+    }
+  }
+}

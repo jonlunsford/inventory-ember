@@ -1,0 +1,13 @@
+<select
+  id={{UUID}}
+  onchange={{onchange}}>
+  {{#each optgroups as |group|}}
+    <optgroup label={{group.label}} >
+      {{#each group.options as |opt|}}
+        <option value={{opt.value}}>{{opt.label}}</option>
+      {{/each}}
+    </optgroup>
+  {{/each}}
+</select>
+
+<label for={{UUID}}>{{label}}{{yield}}</label>

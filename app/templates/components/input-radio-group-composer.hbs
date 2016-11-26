@@ -1,0 +1,29 @@
+{{#if attrs.editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+
+  <p class="col s12 mb1">
+    <input id="radio-1" name="group1" class="with-gap" type="radio" />
+    <label for="radio-1">
+      <input class="short-text-field" type="text" value="First Choice" />
+    </label>
+  </p>
+
+  <button class="col mb1 btn-flat waves-effect waves-light">
+    <i class="material-icons left">add</i>
+    Add Another Choice
+  </button>
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+      <p class="mb1">Multiple Choice Preview:</p>
+    {{/if}}
+  </div>
+{{/if}}
+{{yield}}

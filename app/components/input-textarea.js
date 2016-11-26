@@ -4,10 +4,9 @@ const { Component, computed } = Ember;
 
 export default Component.extend({
   classNames: ['input-field'],
-  type: 'text',
 
   UUID: Ember.computed( function() {
-    return Ember.guidFor(this) + "-input-text";
+    return Ember.guidFor(this) + "-input-textarea";
   }),
 
   _errorMessages: computed('errors.[]', function() {
