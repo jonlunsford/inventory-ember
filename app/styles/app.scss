@@ -4,6 +4,9 @@ $roboto-font-path: '../assets/';
 @import "components/color";
 $primary-color: color('deep-orange', 'darken-2');
 
+// Bourbon
+@import "bourbon";
+
 // Materialize styles
 @import "materialize";
 
@@ -28,6 +31,11 @@ body {
 // Utils
 input[type='text'].short-text-field {
   height: 1.5rem;
+}
+
+.flex {
+  @include display(flex);
+  @include align-items(center);
 }
 
 $padding-mods: (
