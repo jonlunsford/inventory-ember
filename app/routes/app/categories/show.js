@@ -59,11 +59,15 @@ export default Ember.Route.extend({
 
     deleteInput(input) {
       if(window.confirm('Are you sure?')) {
-        input.destroyRecord().then(() => {
-          this.get('flashMessages').success(`Deleted input: ${input.get('name')}`);
-        }).catch(() => {
-          this.get('flashMessages').danger(`Problem deleting input: ${input.get('name')}`);
-        });
+        if(input.get('isNew')) {
+          this.store.unloadRecord(input);
+        } else {
+          input.destroyRecord().then(() => {
+            this.get('flashMessages').success(`Deleted input: ${input.get('name')}`);
+          }).catch(() => {
+            this.get('flashMessages').danger(`Problem deleting input: ${input.get('name')}`);
+          });
+        }
       }
     },
 
