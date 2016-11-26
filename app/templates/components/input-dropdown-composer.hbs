@@ -1,0 +1,41 @@
+{{#if attrs.editMode}}
+
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+
+  <ul class="col s6">
+    {{#each input.meta.option_inputs as |option|}}
+      <li class="flex">
+        <input class="input-short" type="text" value={{option.label}} onkeyup={{action 'setLabelFor' option}} />
+        <a class="ml1" href="javascript:;" onclick={{action 'removeOption' option}}>Remove</a>
+      </li>
+    {{/each}}
+  </ul>
+
+  <a onclick={{action 'addOption'}} href="javascript:;" class="col s12 mb1">
+    <i class="material-icons left">add</i>
+    Add Another Choice
+  </a>
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+    <p class="mb1"><strong>Drop Down Preview:</strong></p>
+    {{/if}}
+
+    {{input-dropdown
+      options=input.meta.option_inputs
+      onchange=(action 'setInputValue')
+      name=input.name
+      label=input.label
+      value=input.value
+    }}
+
+  </div>
+{{/if}}
+{{yield}}

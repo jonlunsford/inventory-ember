@@ -1,0 +1,13 @@
+<select
+  id={{UUID}}
+  name={{attrs.name}}
+  value={{attrs.value}}
+  onchange={{attrs.onchange}}>
+  {{#each attrs.options as |opt|}}
+    <option selected={{opt.selected}} value={{opt.value}}>{{opt.label}}</option>
+  {{/each}}
+</select>
+
+<label for={{UUID}}>{{attrs.label}}{{yield}}</label>
+
+{{yield}}
