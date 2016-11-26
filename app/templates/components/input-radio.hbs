@@ -1,0 +1,26 @@
+<input
+  class="with-gap"
+  type="radio"
+  id={{UUID}}
+  name={{attrs.name}}
+  checked={{attrs.checked}}
+  onchange={{attrs.onchange}}
+  value={{attrs.label}} />
+
+<label for={{UUID}}>
+  {{#if attrs.editable}}
+    <input class="short-text-field" type="text" value={{attrs.label}}
+    onkeyup={{attrs.onlabeledit}} />
+  {{else}}
+    {{attrs.label}}
+  {{/if}}
+</label>
+
+{{#if attrs.editable}}
+  <a onclick={{attrs.onremove}} href="javascript:;" class="ml1">
+    Remove
+  </a>
+{{/if}}
+
+{{yield}}
+

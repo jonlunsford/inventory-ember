@@ -6,24 +6,42 @@
     classNames="col s12"
   }}
 
-  <p class="col s12 mb1">
-    <input id="radio-1" name="group1" class="with-gap" type="radio" />
-    <label for="radio-1">
-      <input class="short-text-field" type="text" value="First Choice" />
-    </label>
-  </p>
+  {{#each input.meta.radio_inputs as |radio|}}
+    <p class="col s12 mb1">
+      {{input-radio
+        editable=true
+        name=radio.groupName
+        label=radio.label
+        checked=radio.checked
+        onchange=(action 'setInputValue' radio)
+        onlabeledit=(action 'setLabelFor' radio)
+        onremove=(action 'removeRadio' radio)
+      }}
+    </p>
+  {{/each}}
 
-  <button class="col mb1 btn-flat waves-effect waves-light">
+  <a onclick={{action 'addRadio'}} href="javascript:;" class="col mb1">
     <i class="material-icons left">add</i>
     Add Another Choice
-  </button>
+  </a>
 {{/if}}
 
 {{#if attrs.previewMode}}
   <div class="col s12">
     {{#if editMode}}
-      <p class="mb1">Multiple Choice Preview:</p>
+    <p class="mb1"><strong>Multiple Choice Preview:</strong></p>
     {{/if}}
+
+    <p class="mb1">{{input.label}}</p>
+    {{#each input.meta.radio_inputs as |radio|}}
+      {{input-radio
+        name='preview-group'
+        label=radio.label
+        checked=radio.checked
+        editable=false
+      }}
+    {{/each}}
+
   </div>
 {{/if}}
 {{yield}}
