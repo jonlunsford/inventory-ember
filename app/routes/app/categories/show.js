@@ -9,6 +9,7 @@ export default Ember.Route.extend({
     textarea: 'input-textarea-composer',
     number: 'input-number-composer',
     radiogroup: 'input-radio-group-composer',
+    checkboxgroup: 'input-checkbox-group-composer'
   },
 
 

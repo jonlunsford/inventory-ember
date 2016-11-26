@@ -12,7 +12,7 @@ export default Ember.Component.extend({
       { label: 'Paragraph Text', value: 'textarea' },
       { label: 'Multiple Choice', value: 'radiogroup' },
       { label: 'Number', value: 'number' },
-      { label: 'Checkboxes', value: 'checkbox' },
+      { label: 'Checkboxes', value: 'checkboxgroup' },
       { label: 'Drop Down Menu', value: 'select' },
 
     ]},

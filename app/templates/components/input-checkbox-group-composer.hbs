@@ -1,0 +1,46 @@
+{{#if attrs.editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+
+  {{#each input.meta.checkbox_inputs as |checkbox|}}
+    <p class="col s12 mb1">
+      {{input-checkbox
+        editable=true
+        name=checkbox.name
+        label=checkbox.label
+        checked=checkbox.checked
+        onchange=(action 'setInputValue' checkbox)
+        onlabeledit=(action 'setLabelFor' checkbox)
+        onremove=(action 'removeCheckbox' checkbox)
+      }}
+    </p>
+  {{/each}}
+
+  <a onclick={{action 'addCheckbox'}} href="javascript:;" class="col mb1">
+    <i class="material-icons left">add</i>
+    Add Another Choice
+  </a>
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+    <p class="mb1"><strong>Checkbox Preview:</strong></p>
+    {{/if}}
+
+    <p class="mb1">{{input.label}}</p>
+    {{#each input.meta.checkbox_inputs as |checkbox|}}
+      {{input-checkbox
+        label=checkbox.label
+        checked=checkbox.checked
+        editable=false
+      }}
+    {{/each}}
+
+  </div>
+{{/if}}
+{{yield}}
