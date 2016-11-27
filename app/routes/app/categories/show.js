@@ -11,7 +11,8 @@ export default Ember.Route.extend({
     radiogroup: 'input-radio-group-composer',
     checkboxgroup: 'input-checkbox-group-composer',
     dropdown: 'input-dropdown-composer',
-    switch: 'input-switch-composer'
+    switch: 'input-switch-composer',
+    date: 'input-date-composer',
   },
 
 

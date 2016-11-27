@@ -20,8 +20,8 @@ export default Ember.Component.extend({
     { label: "Fancy Fields", options: [
       { label: 'Switch', value: 'switch' },
       { label: 'Date', value: 'date' },
-      { label: 'Time', value: 'time' },
-      { label: 'File Input', value: 'file' },
+      //{ label: 'Time', value: 'time' },
+      //{ label: 'File Input', value: 'file' },
       { label: 'Range', value: 'range' }
     ]}
   ],

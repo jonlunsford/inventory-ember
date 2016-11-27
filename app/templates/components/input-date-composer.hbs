@@ -1,0 +1,19 @@
+{{#if attrs.editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+      <p class="mb1"><strong>Date picker Preview:</strong></p>
+    {{/if}}
+    {{input-date value=input.value label=input.label onchange=(action 'setInputValue') }}
+  </div>
+{{/if}}
+{{yield}}
