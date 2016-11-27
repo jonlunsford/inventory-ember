@@ -1,0 +1,9 @@
+<div class="switch">
+  <label>
+    {{offLabel}}
+    <input type="checkbox" onchange={{attrs.onchange}} value={{value}} checked={{checked}}>
+    <span class="lever"></span>
+    {{onLabel}}
+  </label>
+  {{yield}}
+</div>
