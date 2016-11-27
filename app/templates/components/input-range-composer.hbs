@@ -1,0 +1,40 @@
+{{#if attrs.editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+
+  {{input-field
+    value=input.meta.min
+    onkeyup=(action 'setMin')
+    label="Min"
+    classNames="col s12 m6 l6"
+  }}
+
+  {{input-field
+    value=input.meta.max
+    onkeyup=(action 'setMax')
+    label="Max"
+    classNames="col s12 m6 l6"
+  }}
+
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+      <p class="mb1"><strong>Range Preview:</strong></p>
+    {{/if}}
+
+    {{input-range
+      value=input.value
+      label=input.label
+      min=input.meta.min
+      max=input.meta.max
+      onchange=(action 'setInputValue')
+    }}
+  </div>
+{{/if}}
+{{yield}}

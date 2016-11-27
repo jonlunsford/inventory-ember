@@ -13,6 +13,7 @@ export default Ember.Route.extend({
     dropdown: 'input-dropdown-composer',
     switch: 'input-switch-composer',
     date: 'input-date-composer',
+    range: 'input-range-composer',
   },
 
 
