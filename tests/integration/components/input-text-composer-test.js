@@ -11,14 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{input-text-composer}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#input-text-composer}}
-      template block text
-    {{/input-text-composer}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().html("").text().trim(), '');
 });

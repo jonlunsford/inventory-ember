@@ -11,14 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{input-date}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#input-date}}
-      template block text
-    {{/input-date}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'MondayNov282016November2016  SMTWTFS303112345678910111213141516171819202122232425262728293012345678910TodayClearClose');
 });
