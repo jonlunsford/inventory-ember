@@ -1,0 +1,38 @@
+{{#if attrs.editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+
+  {{#if categoryOptionsLoaded}}
+    {{input-dropdown
+      classNames="col s12"
+      label="Select Resource Link"
+      value=input.meta.category_id
+      onchange=(action 'getCategoryProducts')
+      options=categoryOptions
+    }}
+  {{/if}}
+
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+    {{#if editMode}}
+      <p class="mb1"><strong>Resource Link Preview:</strong></p>
+    {{/if}}
+
+    {{#if autocompleteDataLoaded}}
+      {{input-autocomplete
+        classNames="pb1"
+        label=input.label
+        value=input.value
+        onchange=(action 'setInputValue')
+        autocompleteData=autocompleteData
+      }}
+    {{/if}}
+  </div>
+{{/if}}
+{{yield}}

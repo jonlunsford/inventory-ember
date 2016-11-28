@@ -3,7 +3,8 @@ import Ember from 'ember';
 const CheckboxInput = Ember.Object.extend({
   label: '',
   name: '',
-  checked: false
+  checked: false,
+  meta: {}
 });
 
 export default Ember.Component.extend({

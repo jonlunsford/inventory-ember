@@ -22,7 +22,8 @@ export default Ember.Component.extend({
       { label: 'Date', value: 'date' },
       //{ label: 'Time', value: 'time' },
       //{ label: 'File Input', value: 'file' },
-      { label: 'Range', value: 'range' }
+      { label: 'Range', value: 'range' },
+      { label: 'Resource Link', value: 'categorylink' }
     ]}
   ],
 
