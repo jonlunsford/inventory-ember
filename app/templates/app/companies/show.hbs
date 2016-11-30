@@ -1,13 +1,19 @@
+{{app-header pageTitle=model.title}}
+
 {{#md-layout}}
-  {{#md-card title=model.title}}
+  {{#md-card title="Assets"}}
     <ul class="collection">
       {{#each model.categories as |category|}}
-        <li class="collection-item avatar" onclick={{route-action 'showCategory' category}}>
-          <i class="material-icons green circle">chat</i>
-          <span class="title">{{category.name}}</span>
-          <span class="secondary-content">
-            <i class="material-icons red-text" onclick={{route-action 'destroyCategory' category}}>remove_circle </i>
-          </span>
+        <li class="collection-item" >
+          {{category.name}}
+          <div class="secondary-content">
+            <a href="javascript:;" onclick={{route-action 'showCategory' category}}>
+              <i class="material-icons">visibility</i>
+            </a>
+            <a href="javascript:;" class="red-text ml1" onclick={{route-action 'destroyCategory' category}}>
+              <i class="material-icons">remove_circle</i>
+            </a>
+          </div>
         </li>
       {{else}}
         <li class="collection-item">

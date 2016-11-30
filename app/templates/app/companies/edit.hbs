@@ -1,0 +1,35 @@
+{{app-header pageTitle="Edit Location"}}
+
+{{#md-layout}}
+  <div class="row">
+    <p class="col s12 caption light m0">These changes will be visible to all employees.</p>
+  </div>
+
+  {{#md-card
+    classNames="col s12"
+    buttonText='Update Location'
+    onsubmit=(route-action 'updateCompany')}}
+
+    {{#if errors}}
+      <div class="row errors-container">
+        <ul>
+          {{#each errors as |err|}}
+            <li>{{err}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <div class="row">
+      {{input-field
+        value=model.title
+        label="Location Name"
+        classNames='col s12'
+        errors=model.validations.attrs.title.messages
+      }}
+
+      {{input-address address=model.address}}
+    </div>
+  {{/md-card}}
+
+{{/md-layout}}

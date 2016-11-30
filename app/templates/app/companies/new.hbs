@@ -1,0 +1,39 @@
+{{app-header pageTitle="New Location"}}
+
+{{#md-layout}}
+  <div class="row">
+    <p class="col s12 caption light m0">After you create your new location you
+      will be able to add assets, inventory, and employees. You will be able to
+    assign permissions to your employees, for example you may want managers to
+    be able to edit, and staff to only be able to view details of this location.</p>
+  </div>
+
+  {{log validations}}
+  {{#md-card
+    classNames="col s12"
+    buttonText='Create Location'
+    onsubmit=(route-action 'createCompany')}}
+
+    {{#if model.errors}}
+      <div class="row errors-container">
+        <ul>
+          {{#each model.errors as |err|}}
+            <li>{{err}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <div class="row">
+      {{input-field
+        value=model.company.title
+        label="Location Name"
+        classNames='col s12'
+        errors=model.company.validations.attrs.title.messages
+      }}
+
+      {{input-address address=model.address}}
+    </div>
+  {{/md-card}}
+
+{{/md-layout}}

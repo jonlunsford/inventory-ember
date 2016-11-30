@@ -7,23 +7,6 @@ export default Ember.Route.extend({
   session: inject.service(),
 
   actions: {
-    createCompany() {
-      let user = this.get('session.currentUser');
-      let data = this.get('currentModel.newCompany');
-      let company = this.store.createRecord('company', { owner: user, title: data.title });
-
-      this.set('currentModel.newCompany.errors', []);
-
-      company.save().then(() => {
-        this.get('flashMessages').success(`Created company: ${data.title}`);
-        this.set('currentModel.newCompany.title', '');
-      }).catch((err) => {
-        this.store.unloadRecord(company);
-        this.set('currentModel.newCompany.errors', (err.errors || []).mapBy('detail'));
-        this.get('flashMessages').danger(`Problem creating company: ${data.title}`);
-      });
-    },
-
     destroyCompany(company) {
       if(window.confirm('Are you sure?')) {
         company.destroyRecord().then(() => {
@@ -45,8 +28,7 @@ export default Ember.Route.extend({
 
   model() {
     return RSVP.hash({
-      companies: this.get('session.currentUser').get('companies'),
-      newCompany: { title: '', errors: [] }
+      companies: this.get('session.currentUser').get('companies')
     });
   }
 });
