@@ -1,0 +1,15 @@
+.page-title {
+  font-size: 3rem;
+  line-height: 6rem;
+
+  @media #{$medium-and-down} {
+    text-align: center;
+    font-size: 2rem;
+    line-height: 4rem;
+  }
+}
+
+.caption {
+  font-size: 1.25rem;
+  color: color('grey', 'darken-1');
+}

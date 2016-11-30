@@ -2,7 +2,7 @@
 $roboto-font-path: '../assets/';
 
 @import "components/color";
-$primary-color: color('blue-grey', 'darken-1');
+$primary-color: color('teal', 'darken-1');
 
 // Bourbon
 @import "bourbon";
@@ -10,13 +10,20 @@ $primary-color: color('blue-grey', 'darken-1');
 // Materialize styles
 @import "materialize";
 
+// Config
+@import "config/type";
+@import "config/validation";
+
 // Components
 @import "components/toasts";
 @import "components/input-composer";
+@import "components/md-layout";
+@import "components/md-nav";
 
 // View stylesheets
-@import "app/index";
-@import "app/room/index";
+@import "templates/app/index";
+@import "templates/app/room/index";
+@import "templates/index";
 
 
 body {
@@ -39,6 +46,7 @@ input[type='text'].short-text-field {
 }
 
 $padding-mods: (
+  p: padding,
   pt: padding-top,
   pl: padding-left,
   pb: padding-bottom,
@@ -52,7 +60,7 @@ $margin-mods: (
   mr: margin-right
 );
 
-@for $i from 1 through 4 {
+@for $i from 0 through 4 {
   @each $mod, $attr in $padding-mods {
     .#{$mod}#{$i} {
       #{$attr}: #{$i}rem !important;
