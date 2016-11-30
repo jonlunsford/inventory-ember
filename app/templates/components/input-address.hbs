@@ -1,0 +1,27 @@
+{{input-field
+  value=address.city
+  label="City"
+  classNames="col s12 m6 l6"
+  errors=address.validations.attrs.city.messages
+}}
+
+{{input-field
+  value=address.state
+  label="State"
+  classNames="col s12 m6 l6"
+  errors=address.validations.attrs.state.messages
+}}
+
+{{input-field
+  value=address.zip
+  label="Zip"
+  classNames="col s12 m6 l6"
+  errors=address.validations.attrs.zip.messages
+}}
+
+{{input-field value=address.country label="Country" classNames="col s12 m6 l6" }}
+{{input-field value=address.line1 label="Address Line 1" classNames="col s12" }}
+{{input-field value=address.line2 label="Address Line 2" classNames="col s12" }}
+{{input-field value=address.phone label="Phone" classNames="col s12" }}
+{{input-textarea value=address.description label="Notes" classNames="col s12" }}
+{{yield}}

@@ -1,0 +1,30 @@
+{{#link-to "app.index" classNames="brand-logo waves-effect waves-teal" }}
+  <i class="material-icons medium">web_asset</i>
+  <div class="brand-name">Asset.ly</div>
+{{/link-to}}
+
+<ul class="mt0">
+  <li>
+    <ul class="collapsible" data-collapsible="accordian">
+      <li>
+        <a href="javascript:;" class="collapsible-header waves-effect waves-teal active">Locations</a>
+
+        <div class="collapsible-body">
+          <ul>
+            <li>{{link-to "View All" "app.index"}}</li>
+            <li>{{link-to "Add New" "app.companies.new"}}</li>
+          </ul>
+        </div>
+      </li>
+
+    </ul>
+  </li>
+</ul>
+
+{{yield}}
+
+<footer class="side-nav-footer">
+  <button class="btn btn-large" onclick={{route-action 'logout'}}>
+    Logout
+  </button>
+</footer>

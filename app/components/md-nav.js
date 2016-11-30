@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['navbar-fixed', 'md-nav'],
+  classNames: ['md-nav'],
 
   didInsertElement() {
     this._super(...arguments);

@@ -1,0 +1,8 @@
+.main-content {
+  padding: 2rem 2rem 2rem 22rem;
+
+  @media #{$medium-and-down} {
+    padding: 2rem 1rem;
+  }
+}
+
