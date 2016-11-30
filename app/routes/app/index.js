@@ -6,20 +6,8 @@ export default Ember.Route.extend({
   flashMessages: inject.service(),
 
   actions: {
-    createCompany() {
-      let data = this.get('currentModel.newCompany');
-      let company = this.store.createRecord('company', { title: data.title });
-
-      this.set('currentModel.newCompany.errors', []);
-
-      company.save().then(() => {
-        this.get('flashMessages').success(`Created company: ${data.title}`);
-        this.set('currentModel.newCompany.title', '');
-      }).catch((err) => {
-        this.store.unloadRecord(company);
-        this.set('currentModel.newCompany.errors', (err.errors || []).mapBy('detail'));
-        this.get('flashMessages').danger(`Problem creating company: ${data.title}`);
-      });
+    sendToNew() {
+      this.transitionTo('app.companies.new');
     },
 
     removeCompany(company) {
@@ -31,14 +19,6 @@ export default Ember.Route.extend({
         });
       }
     },
-
-    enterCompany(company) {
-      let buttons = ['remove_circle'];
-      let targetText = arguments[1].target.innerText;
-      if(buttons.indexOf(targetText) < 0) {
-        this.transitionTo('app.companies.index', company);
-      }
-    }
   },
 
   model() {

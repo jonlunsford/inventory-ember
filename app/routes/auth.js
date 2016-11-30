@@ -7,7 +7,7 @@ export default Route.extend({
 
   beforeModel() {
     if(this.get('session').get('isAuthenticated')) {
-      this.transitionTo('app.users.companies');
+      this.transitionTo('app.index');
     }
   }
 });
