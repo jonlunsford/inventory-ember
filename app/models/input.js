@@ -8,5 +8,6 @@ export default DS.Model.extend({
   meta: DS.attr(),
   inputType: DS.attr('string'),
   product: DS.belongsTo('product'),
-  category: DS.belongsTo('category')
+  category: DS.belongsTo('category'),
+  address: DS.belongsTo('address', { async: true })
 });
