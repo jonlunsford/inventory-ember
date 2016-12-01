@@ -1,34 +1,49 @@
 {{app-header pageTitle=model.title}}
 
 {{#md-layout}}
-  {{#md-card title="Assets"}}
+  <div class="row">
+    <p class="col s12 caption light m0">These are all of your assets at
+      <em>{{model.title}}</em>. An asset is like a category of inventory, for example,
+      say kegs are an asset of your business then each individual keg will make up
+      your inventory of that asset.</p>
+  </div>
+
+  {{#md-card
+    title="Assets"
+    buttonText="Add Asset Type"
+    onsubmit=(route-action "sendToNewCategory") }}
+
     <ul class="collection">
       {{#each model.categories as |category|}}
         <li class="collection-item" >
-          {{category.name}}
+          {{#link-to "app.categories.show" category}}
+            <strong>{{category.name}}</strong>
+          {{/link-to}}
+
           <div class="secondary-content">
-            <a href="javascript:;" onclick={{route-action 'showCategory' category}}>
+            {{#link-to "app.categories.show" category classNames="tooltipped" data-tooltip="View Asset"}}
               <i class="material-icons">visibility</i>
-            </a>
-            <a href="javascript:;" class="red-text ml1" onclick={{route-action 'destroyCategory' category}}>
+            {{/link-to}}
+
+            {{#link-to "app.categories.edit" category classNames="ml1 tooltipped" data-tooltip="Edit Asset"}}
+              <i class="material-icons">edit</i>
+            {{/link-to}}
+
+            {{#link-action
+              classNames="ml1 red-text tooltipped"
+              data-tooltip="Delete Asset"
+              onclick=(route-action "destroyCategory" category)}}
+
               <i class="material-icons">remove_circle</i>
-            </a>
+            {{/link-action}}
           </div>
         </li>
       {{else}}
         <li class="collection-item">
-          No categories yet...
+          <strong>You have no asset types, click 'Add Asset Type' below to begin</strong>
         </li>
       {{/each}}
     </ul>
   {{/md-card}}
 
-  {{#md-card
-    title='Create New Category'
-    buttonText='Create'
-    onsubmit=(route-action 'createCategory')}}
-    <div class="row">
-      {{input-field value=model.newCategoryName label="Category name" classNames='col s12' errors=model.newCategoryErrors}}
-    </div>
-  {{/md-card}}
 {{/md-layout}}

@@ -6,22 +6,9 @@ export default Ember.Route.extend({
   flashMessages: inject.service(),
 
   actions: {
-    createCategory() {
-      let data =  {
-        name: this.get('currentModel.newCategoryName'),
-        company: this.get('currentModel')
-      };
-
-      let category = this.store.createRecord('category', data);
-
-      category.save().then(() => {
-        this.get('flashMessages').success(`Created category: ${data.name}`);
-        this.set('currentModel.newCategoryName', '');
-      }).catch((err) => {
-        this.store.unloadRecord(category);
-        this.set('currentModel.newCategoryErrors', (err.errors || []).mapBy('detail'));
-        this.get('flashMessages').danger(`Problem creating category: ${data.name}`);
-      });
+    sendToNewCategory() {
+      let companyId = this.get('currentModel.id');
+      this.transitionTo("app.categories.new", { queryParams: { company_id: companyId }});
     },
 
     destroyCategory(category) {

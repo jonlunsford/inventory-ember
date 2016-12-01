@@ -1,0 +1,24 @@
+{{app-header pageTitle="New Asset Type"}}
+
+{{#md-layout}}
+  <div class="row">
+    <p class="col s12 caption light m0">After you create your new asset type you
+      will be able to add inventory to your new asset type</p>
+  </div>
+
+  {{#md-card
+    classNames="col s12"
+    buttonText="Create Asset Type"
+    onsubmit=(route-action "createCategory")}}
+
+    <div class="row">
+      {{input-field
+        value=model.name
+        label="Asset type name"
+        classNames='col s12'
+        errors=model.validations.attrs.name.messages
+      }}
+    </div>
+  {{/md-card}}
+
+{{/md-layout}}

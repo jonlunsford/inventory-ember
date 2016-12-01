@@ -13,11 +13,14 @@
     <ul class="collection">
       {{#each model.companies as |company|}}
         <li class="collection-item" >
-          <strong>{{company.title}}</strong>
+          {{#link-to "app.companies.show" company}}
+            <strong>{{company.title}}</strong>
+          {{/link-to}}
 
           {{#if company.address}}
             <em class="grey-text">{{company.address.city}}, {{company.address.state}} {{company.address.zip}}</em>
           {{/if}}
+
           <div class="secondary-content">
             {{#link-to "app.companies.show" company classNames="tooltipped" data-tooltip="View Location"}}
               <i class="material-icons">visibility</i>
