@@ -14,7 +14,8 @@ export default Ember.Route.extend({
     switch: 'input-switch-composer',
     date: 'input-date-composer',
     range: 'input-range-composer',
-    categorylink: 'input-category-link-composer'
+    categorylink: 'input-category-link-composer',
+    scannable: 'input-scannable-composer'
   },
 
   actions: {

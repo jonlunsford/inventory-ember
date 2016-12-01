@@ -7,6 +7,10 @@ export default Ember.Component.extend({
   attributeBindings: ['multiple'],
   multiple: null,
   optgroups: [
+    { label: "Recommended Fields", options: [
+      { label: "Identifier, Scannable Codes (UPC, QR, Matrix, etc.)", value: "scannable" }
+    ]},
+
     { label: "Standard Fields", options: [
       { label: 'Single Line Text', value: 'text' },
       { label: 'Paragraph Text', value: 'textarea' },
@@ -23,7 +27,7 @@ export default Ember.Component.extend({
       //{ label: 'Time', value: 'time' },
       //{ label: 'File Input', value: 'file' },
       { label: 'Range', value: 'range' },
-      { label: 'Resource Link', value: 'categorylink' }
+      { label: 'Asset Link', value: 'categorylink' }
     ]}
   ],
 
