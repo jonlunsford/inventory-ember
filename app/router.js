@@ -29,6 +29,7 @@ Router.map(function() {
       this.route('new');
       this.route('show', { path: ':category_id' });
       this.route('edit', { path: ':category_id/edit' });
+      this.route('template', { path: ':category_id/template' });
     });
 
     this.route('products', function() {

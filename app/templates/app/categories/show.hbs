@@ -1,17 +1,42 @@
+{{app-header pageTitle=model.name}}
+
 {{#md-layout}}
-  {{#md-card title=model.name}}
+  <div class="row">
+    <p class="col s12 caption light m0">These are all of your {{pluralize-string model.name}}.
+      You can customize the fields each {{singularize-string model.name}} will
+      have by <strong>{{link-to (concat "customizing the " model.name "
+        template") "app.categories.template" model}}</strong>.</p>
+  </div>
+
+  {{#md-card
+    title=(concat "Inventory Of " model.name)
+    buttonText=(concat "Add " (singularize-string model.name))
+    onsubmit=(route-action "sendToNewProduct") }}
+
     <ul class="collection">
       {{#each model.products as |product|}}
-        <li class="collection-item avatar" onclick={{route-action 'showProduct' product}}>
-          <i class="material-icons green circle">chat</i>
-          <span class="title">{{product.name}}</span>
-          <span class="secondary-content">
-            <i class="material-icons red-text" onclick={{route-action 'destroyProduct' product}}>remove_circle </i>
-          </span>
+        <li class="collection-item">
+          {{#link-to "app.products.show" product}}
+            <strong>{{product.name}}</strong>
+          {{/link-to}}
+
+          <div class="secondary-content">
+            {{#link-to "app.products.show" product classNames="ml1 tooltipped" data-tooltip="Edit Product"}}
+              <i class="material-icons">edit</i>
+            {{/link-to}}
+
+            {{#link-action
+              classNames="ml1 red-text tooltipped"
+              data-tooltip="Delete Product"
+              onclick=(route-action "destroyProduct" product)}}
+
+              <i class="material-icons">remove_circle</i>
+            {{/link-action}}
+          </div>
         </li>
       {{else}}
         <li class="collection-item">
-          No products yet...
+          <strong>You have no {{model.name}}, click 'Add {{singularize-string model.name}}' below to begin</strong>
         </li>
       {{/each}}
     </ul>
@@ -25,20 +50,4 @@
       {{input-field value=model.newProductName label="Product name" classNames='col s12' errors=model.newProductErrors}}
     </div>
   {{/md-card}}
-
-
-  {{#md-card title="Manage Template"
-  buttonText='Save'
-  onsubmit=(route-action 'saveInputs')}}
-    {{#each model.inputs as |input|}}
-      {{input-composer input=input }}
-    {{/each}}
-
-    <div class="row">
-      {{input-select onchange=(route-action 'addInput') model=model label="Choose a field to insert" classNames='col s12' }}
-    </div>
-  {{/md-card}}
-
-
-
 {{/md-layout}}

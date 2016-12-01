@@ -1,0 +1,30 @@
+{{app-header pageTitle=(concat model.name " Template")}}
+
+{{#md-layout}}
+  <div class="row">
+    <p class="col s12 caption light m0">In order to provide details about
+      each individual {{singularize-string model.name}} you can add fields
+      that are relevant to {{model.name}} at {{model.company.title}}. These are the fields that ALL
+      {{model.name}} will inherit. If you plan on using the scan feature of our
+      iOS and Android apps, you must add a Identifier field, this will be the
+      field that stores the bar code, qr code, etc. that you scan for each
+      {{singularize-string model.name}}.</p>
+  </div>
+
+  {{#md-card
+    title=(concat (singularize-string model.name) " Fields")
+    buttonText='Save Template'
+    onsubmit=(route-action 'saveInputs')}}
+
+    <div class="mb1"></div>
+
+    {{#each model.inputs as |input|}}
+      {{input-composer input=input }}
+    {{/each}}
+
+    <div class="row">
+      {{input-select onchange=(route-action 'addInput') model=model label="Choose a field to insert" classNames='col s12' }}
+    </div>
+  {{/md-card}}
+
+{{/md-layout}}
