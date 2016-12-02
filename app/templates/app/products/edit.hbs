@@ -8,11 +8,11 @@
     <div class="mb1"></div>
 
     <div class="row">
-      {{input-field value=model.name label="Name"}}
+      {{input-field value=model.name label="Name" classNames="col s12"}}
     </div>
 
     {{#each model.inputs as |input|}}
-      {{input-composer input=input editable=false }}
+      {{input-composer input=input editable=false classNames="input-composer--uneditable" }}
     {{/each}}
   {{/md-card}}
 

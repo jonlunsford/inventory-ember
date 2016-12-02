@@ -21,47 +21,21 @@ export default Ember.Route.extend({
 
   actions: {
     saveProduct() {
-      this.get('currentModel.product').save().then(() => {
-        this.get('flashMessages').success('Changes Saved');
+      let model =  this.get('currentModel.product');
+      let category = this.get('currentModel.category');
+
+      model.save().then(() => {
+        this.store.peekAll('input').save().then(() => {
+          this.get('flashMessages').success('Changes Saved');
+          this.transitionTo("app.categories.show", category);
+        }).catch(() => {
+          this.get('flashMessages').danger('Problem Saving');
+        });
+
       }).catch(() => {
         this.get('flashMessages').danger('Problem Saving');
       });
     },
-
-    saveInputs() {
-      this.store.peekAll('input').save().then(() => {
-        this.get('flashMessages').success('Changes Saved');
-      }).catch(() => {
-        this.get('flashMessages').danger('Problem Saving');
-      });
-    },
-
-    deleteInput(input) {
-      if(window.confirm('Are you sure?')) {
-        if(input.get('isNew')) {
-          this.store.unloadRecord(input);
-        } else {
-          input.destroyRecord().then(() => {
-            this.get('flashMessages').success(`Deleted input: ${input.get('name')}`);
-          }).catch(() => {
-            this.get('flashMessages').danger(`Problem deleting input: ${input.get('name')}`);
-          });
-        }
-      }
-    },
-
-    addInput(event) {
-      let fieldType = event.target.value;
-      let data = {
-        inputType: fieldType,
-        product: this.get('currentModel'),
-        meta: {
-          ember_component: this.get('componentMap')[fieldType]
-        }
-      };
-
-      this.store.createRecord('input', data);
-    }
   },
 
   _getNewProduct() {

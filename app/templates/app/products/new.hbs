@@ -7,7 +7,7 @@
   </div>
 
   {{#md-card
-    title=(concat (singularize-string model.product.name) " data")
+    title=(concat singularize-string model.product.name)
     buttonText='Save Template'
     onsubmit=(route-action 'saveProduct')}}
 
@@ -18,7 +18,7 @@
     </div>
 
     {{#each model.product.inputs as |input|}}
-      {{input-composer input=input editable=false }}
+      {{input-composer input=input editable=false classNames="input-composer--uneditable" }}
     {{/each}}
   {{/md-card}}
 
