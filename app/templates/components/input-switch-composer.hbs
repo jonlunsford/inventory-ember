@@ -27,9 +27,14 @@
     {{#if editMode}}
       <p class="mb1"><strong>Switch Preview:</strong></p>
     {{/if}}
+
     <p class="mb1">{{input.label}}</p>
-    {{input-switch value=input.value onLabel=input.meta.on_label offLabel=input.meta.off_label
-    onchange=(action 'setInputValue') }}
+
+    {{input-switch
+      value=input.value
+      onLabel=input.meta.on_label
+      offLabel=input.meta.off_label
+      onchange=(action 'setInputValue') }}
   </div>
 {{/if}}
 {{yield}}
