@@ -5,7 +5,15 @@ export default Ember.Component.extend({
   tagName: 'p',
 
   UUID: Ember.computed(function() {
-    return Ember.guidFor(this) + "-input-radio";
+    return Ember.guidFor(this) + "-input-checkbox";
   }),
+
+  didInsertElement() {
+    let $checkbox = Ember.$(this.element).find("input[type='checkbox']");
+
+    if(this.get('checked') === 'true' || this.get('checked') === true) {
+      $checkbox.attr('checked', 'checked');
+    }
+  },
 
 });

@@ -39,7 +39,7 @@ export default Ember.Component.extend({
         });
 
         that.set('input.value', product.get('name'));
-        that.set('input.product', product);
+        //that.set('input.product', product);
         that.set('input.meta.product_id', product.get('id'));
         that.set('input.meta.category_id', that.get('linkedCategory.id'));
       }, 400);

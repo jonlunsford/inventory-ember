@@ -36,7 +36,7 @@ export default Ember.Component.extend({
     setInputValue(checkbox, event) {
       this.set('input.value', event.target.value);
       //this.get('input.meta.checkbox_inputs').forEach((input) => { input.set('checked', false); });
-      checkbox.set('checked', true);
+      checkbox.toggleProperty('checked');
     }
   },
 

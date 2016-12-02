@@ -29,7 +29,7 @@
 {{#if attrs.previewMode}}
   <div class="col s12">
     {{#if editMode}}
-    <p class="mb1"><strong>Checkbox Preview:</strong></p>
+      <p class="mb1"><strong>Checkbox Preview:</strong></p>
     {{/if}}
 
     <p class="mb1">{{input.label}}</p>
@@ -38,6 +38,7 @@
         label=checkbox.label
         checked=checkbox.checked
         editable=false
+        onchange=(action 'setInputValue' checkbox)
       }}
     {{/each}}
 
