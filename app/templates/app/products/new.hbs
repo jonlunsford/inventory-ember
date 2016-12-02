@@ -1,0 +1,25 @@
+{{app-header pageTitle=(concat "New " (singularize-string model.category.name))}}
+
+{{#md-layout}}
+  <div class="row">
+    <p class="col s12 caption light m0">You are adding a new {{singularize-string
+      model.category.name}} to your inventory.</p>
+  </div>
+
+  {{#md-card
+    title=(concat (singularize-string model.product.name) " data")
+    buttonText='Save Template'
+    onsubmit=(route-action 'saveProduct')}}
+
+    <div class="mb1"></div>
+
+    <div class="row">
+      {{input-field value=model.product.name}}
+    </div>
+
+    {{#each model.product.inputs as |input|}}
+      {{input-composer input=input editable=false }}
+    {{/each}}
+  {{/md-card}}
+
+{{/md-layout}}

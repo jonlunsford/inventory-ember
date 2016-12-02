@@ -1,14 +1,20 @@
-<i data-activates={{UUID}} class="blue-grey-text darken-4 material-icons js-more-menu more-menu">more_vert</i>
-<ul id={{UUID}} class="dropdown-content">
-  <li class={{if previewMode (unless editMode "active")}}>
-    <a onclick={{action 'previewInput'}} href="javascript:;">Preview</a>
-  </li>
-  <li class={{if editMode "active"}}>
-    <a onclick={{action 'editInput'}} href="javascript:;">Edit</a>
-  </li>
-  <li>
-    <a onclick={{route-action 'deleteInput' input}} href="javascript:;">Delete</a>
-  </li>
-</ul>
+{{#if editable}}
+  <i data-activates={{UUID}} class="blue-grey-text darken-4 material-icons js-more-menu more-menu">more_vert</i>
+  <ul id={{UUID}} class="dropdown-content">
+    <li class={{if previewMode (unless editMode "active")}}>
+      <a onclick={{action 'previewInput'}} href="javascript:;">Preview</a>
+    </li>
+    <li class={{if editMode "active"}}>
+      <a onclick={{action 'editInput'}} href="javascript:;">Edit</a>
+    </li>
+    <li>
+      <a onclick={{route-action 'deleteInput' input}} href="javascript:;">Delete</a>
+    </li>
+  </ul>
+{{/if}}
 
-{{component input.meta.ember_component input=input editMode=editMode previewMode=previewMode}}
+{{component
+  input.meta.ember_component
+  input=input
+  editMode=editMode
+  previewMode=previewMode}}

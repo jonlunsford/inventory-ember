@@ -16,12 +16,12 @@
     <ul class="collection">
       {{#each model.products as |product|}}
         <li class="collection-item">
-          {{#link-to "app.products.show" product}}
+          {{#link-to "app.products.edit" product}}
             <strong>{{product.name}}</strong>
           {{/link-to}}
 
           <div class="secondary-content">
-            {{#link-to "app.products.show" product classNames="ml1 tooltipped" data-tooltip="Edit Product"}}
+            {{#link-to "app.products.edit" product classNames="ml1 tooltipped" data-tooltip="Edit Product"}}
               <i class="material-icons">edit</i>
             {{/link-to}}
 

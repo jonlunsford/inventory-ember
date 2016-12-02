@@ -34,7 +34,9 @@ Router.map(function() {
 
     this.route('products', function() {
       this.route('index');
+      this.route('new');
       this.route('show', { path: ':product_id' });
+      this.route('edit', { path: ':product_id/edit' });
     });
   });
 });

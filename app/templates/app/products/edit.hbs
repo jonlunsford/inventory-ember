@@ -1,0 +1,19 @@
+{{app-header pageTitle=(concat "Edit " (singularize-string model.name))}}
+
+{{#md-layout}}
+  {{#md-card
+    buttonText="Update"
+    onsubmit=(route-action 'updateProduct')}}
+
+    <div class="mb1"></div>
+
+    <div class="row">
+      {{input-field value=model.name label="Name"}}
+    </div>
+
+    {{#each model.inputs as |input|}}
+      {{input-composer input=input editable=false }}
+    {{/each}}
+  {{/md-card}}
+
+{{/md-layout}}
