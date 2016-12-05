@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     let $checkbox = Ember.$(this.element).find("input[type='checkbox']");
 
     if(this.get('input.value') === 'true') {
-      $checkbox.attr("checked", "checked")
+      $checkbox.attr("checked", "checked");
     }
   },
 

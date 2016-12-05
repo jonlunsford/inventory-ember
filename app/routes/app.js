@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ENV from 'inventory/config/environment';
 import fetch from 'ember-network/fetch';
 
-const { Route, inject, $ } = Ember;
+const { Route, inject } = Ember;
 
 export default Route.extend({
   classNames: ["app"],

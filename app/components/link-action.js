@@ -5,7 +5,7 @@ const { $ } = Ember;
 export default Ember.Component.extend({
   tagName: 'a',
   attributeBindings: ['href', 'data-tooltip', 'data-delay', 'data-position', 'onclick'],
-  href: 'javascript:;',
+  href: '#',
 
   didInsertElement() {
     if($(this.element).hasClass('tooltipped')) {
