@@ -6,17 +6,34 @@
 <ul class="mt0">
   <li>
     <ul class="collapsible" data-collapsible="accordian">
+
       <li>
-        <a href="javascript:;" class="collapsible-header waves-effect waves-teal active">Locations</a>
+        <a href="javascript:;" class="collapsible-header waves-effect waves-teal">Locations</a>
 
         <div class="collapsible-body">
           <ul>
             <li>{{link-to "View All" "app.index"}}</li>
             <li>{{link-to "Add New" "app.companies.new"}}</li>
+
+            {{#each user.companies as |company|}}
+              <li>{{link-to company.title "app.companies.show" company}}</li>
+            {{/each}}
           </ul>
         </div>
       </li>
 
+      {{#each company.categories as |category|}}
+        <li>
+          <a href="javascript:;" class="collapsible-header waves-effect waves-teal">{{category.name}}</a>
+
+          <div class="collapsible-body">
+            <ul>
+              <li>{{link-to "View All" "app.categories.show" category}}</li>
+              <li>{{link-to "Edit Template" "app.categories.template" category}}</li>
+            </ul>
+          </div>
+        </li>
+      {{/each}}
     </ul>
   </li>
 </ul>

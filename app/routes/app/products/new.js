@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import ENV from 'inventory/config/environment';
 import fetch from 'ember-network/fetch';
+import InputPersistableMixin from 'inventory/mixins/input-persistable';
 
 const { RSVP, inject } = Ember;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(InputPersistableMixin, {
   flashMessages: inject.service(),
   session: inject.service(),
 
@@ -22,20 +23,8 @@ export default Ember.Route.extend({
   actions: {
     saveProduct() {
       let model =  this.get('currentModel.product');
-      let category = this.get('currentModel.category');
-
-      model.save().then(() => {
-        this.store.peekAll('input').save().then(() => {
-          this.get('flashMessages').success('Changes Saved');
-          this.transitionTo("app.categories.show", category);
-        }).catch(() => {
-          this.get('flashMessages').danger('Problem Saving');
-        });
-
-      }).catch(() => {
-        this.get('flashMessages').danger('Problem Saving');
-      });
-    },
+      model.save().then(this._saveInputs.bind(this)).catch(this._catch);
+    }
   },
 
   _getNewProduct() {

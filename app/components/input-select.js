@@ -22,12 +22,13 @@ export default Ember.Component.extend({
     ]},
 
     { label: "Fancy Fields", options: [
+      { label: 'Asset Link', value: 'categorylink' },
+      { label: 'Address', value: 'address' },
       { label: 'Switch', value: 'switch' },
       { label: 'Date', value: 'date' },
       //{ label: 'Time', value: 'time' },
       //{ label: 'File Input', value: 'file' },
       { label: 'Range', value: 'range' },
-      { label: 'Asset Link', value: 'categorylink' }
     ]}
   ],
 

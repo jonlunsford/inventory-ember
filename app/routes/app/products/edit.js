@@ -1,21 +1,11 @@
 import Ember from 'ember';
+import InputPersistableMixin from 'inventory/mixins/input-persistable';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(InputPersistableMixin, {
   actions: {
     updateProduct() {
       let model = this.get('currentModel');
-
-      model.save().then(() => {
-        this.store.peekAll('input').save().then(() => {
-          this.get('flashMessages').success('Changes Saved');
-          this.transitionTo("app.categories.show", model.get('category'));
-        }).catch(() => {
-          this.get('flashMessages').danger('Problem Saving');
-        });
-
-      }).catch(() => {
-        this.get('flashMessages').danger('Problem Saving');
-      });
+      model.save().then(this._saveInputs.bind(this)).catch(this._catch);
     },
   }
 });

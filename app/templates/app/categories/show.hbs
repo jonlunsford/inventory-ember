@@ -1,3 +1,4 @@
+{{app-side-nav company=model.company classNames="fixed"}}
 {{app-header pageTitle=model.name}}
 
 {{#md-layout}}
@@ -42,12 +43,4 @@
     </ul>
   {{/md-card}}
 
-  {{#md-card
-    title='Create New Product'
-    buttonText='Create'
-    onsubmit=(route-action 'createProduct')}}
-    <div class="row">
-      {{input-field value=model.newProductName label="Product name" classNames='col s12' errors=model.newProductErrors}}
-    </div>
-  {{/md-card}}
 {{/md-layout}}

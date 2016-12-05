@@ -1,0 +1,21 @@
+{{#if attrs.editMode}}
+  {{input-field
+    value=input.label
+    onkeyup=setLabel
+    label="What is this field called?"
+    classNames="col s12"
+  }}
+{{/if}}
+
+{{#if attrs.previewMode}}
+  <div class="col s12">
+
+    {{#if editMode}}
+      <p><strong>Address Input Preview:</strong></p>
+    {{/if}}
+
+    <p class="mb1">{{input.label}}</p>
+
+    {{input-address address=address }}
+  </div>
+{{/if}}

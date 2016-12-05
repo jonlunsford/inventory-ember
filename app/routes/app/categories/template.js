@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import InputPersistableMixin from 'inventory/mixins/input-persistable';
 
 const { inject } = Ember;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(InputPersistableMixin, {
   flashMessages: inject.service(),
   componentMap: {
     text: 'input-text-composer',
@@ -15,16 +16,14 @@ export default Ember.Route.extend({
     date: 'input-date-composer',
     range: 'input-range-composer',
     categorylink: 'input-category-link-composer',
-    scannable: 'input-scannable-composer'
+    scannable: 'input-scannable-composer',
+    address: 'input-address-composer',
   },
 
   actions: {
     saveInputs() {
-      this.store.peekAll('input').save().then(() => {
-        this.get('flashMessages').success('Changes Saved');
-      }).catch(() => {
-        this.get('flashMessages').danger('Problem Saving');
-      });
+      let model = this.get('currentModel');
+      model.save().then(this._saveInputs.bind(this)).catch(this._catch);
     },
 
     deleteInput(input) {
